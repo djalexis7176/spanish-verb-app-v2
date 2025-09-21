@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Verbos Mexicanos! 🇲🇽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .correct-answer {
+            background-color: #d1fae5; /* Green for correct */
+            border-color: #34d399;
+        }
+        .incorrect-answer {
+            background-color: #fee2e2; /* Red for incorrect */
+            border-color: #ef4444;
+        }
+        .active-column {
+            background-color: #f3f4f6;
+        }
+        .correct-cell {
+            background-color: #d1fae5;
+        }
+        .correct-cell input {
+            background-color: #d1fae5;
+        }
+        input.text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <div id="app-container" class="bg-white rounded-xl shadow-2xl w-full max-w-5xl p-8 md:p-12">
+
+        <!-- Language Switcher -->
+        <div class="flex justify-end mb-4">
+            <button id="lang-toggle" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors">
+                English
+            </button>
+        </div>
+
+        <!-- Welcome Section -->
+        <section id="welcome-section" class="text-center">
+            <header class="text-center mb-8">
+                <h1 id="main-title-welcome" class="text-4xl md:text-5xl font-bold text-green-700"></h1>
+                <p id="subtitle-welcome" class="text-gray-500 mt-2"></p>
+            </header>
+            <p id="welcome-text" class="text-lg text-gray-600 leading-relaxed mb-8"></p>
+            <button id="start-button" class="mt-8 px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                
+            </button>
+        </section>
+
+        <!-- Lesson Pages -->
+        <!-- Page 1: What are Action Words -->
+        <section id="lesson-page-1" class="hidden text-center mb-8">
+            <h2 id="lesson-page-1-title" class="text-3xl font-bold text-gray-800 mb-4"></h2>
+            <div id="lesson-page-1-content" class="text-lg text-gray-600 leading-relaxed text-left"></div>
+            <div class="flex justify-between items-center mt-8">
+                <button id="back-button-1" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors hidden">Back</button>
+                <div id="page-number-1" class="text-sm text-gray-400">Page 1 of 6</div>
+                <button id="continue-button-1" class="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                </button>
+            </div>
+        </section>
+
+        <!-- Page 2: How Do We Use These Basic Forms -->
+        <section id="lesson-page-2" class="hidden text-center mb-8">
+            <h2 id="lesson-page-2-title" class="text-3xl font-bold text-gray-800 mb-4"></h2>
+            <div id="lesson-page-2-content" class="text-lg text-gray-600 leading-relaxed text-left"></div>
+            <div class="flex justify-between items-center mt-8">
+                <button id="back-button-2" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors">Back</button>
+                <div id="page-number-2" class="text-sm text-gray-400">Page 2 of 6</div>
+                <button id="continue-button-2" class="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                </button>
+            </div>
+        </section>
+
+        <!-- Page 3: Why Do Action Words Change -->
+        <section id="lesson-page-3" class="hidden text-center mb-8">
+            <h2 id="lesson-page-3-title" class="text-3xl font-bold text-gray-800 mb-4"></h2>
+            <div id="lesson-page-3-content" class="text-lg text-gray-600 leading-relaxed text-left"></div>
+            <div class="flex justify-between items-center mt-8">
+                <button id="back-button-3" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors">Back</button>
+                <div id="page-number-3" class="text-sm text-gray-400">Page 3 of 6</div>
+                <button id="continue-button-3" class="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                </button>
+            </div>
+        </section>
+
+        <!-- Page 4: How Do We Do This -->
+        <section id="lesson-page-4" class="hidden text-center mb-8">
+            <h2 id="lesson-page-4-title" class="text-3xl font-bold text-gray-800 mb-4"></h2>
+            <div id="lesson-page-4-content" class="text-lg text-gray-600 leading-relaxed text-left"></div>
+            <div class="flex justify-between items-center mt-8">
+                <button id="back-button-4" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors">Back</button>
+                <div id="page-number-4" class="text-sm text-gray-400">Page 4 of 6</div>
+                <button id="continue-button-4" class="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                </button>
+            </div>
+        </section>
+
+        <!-- Page 5: What are Action Words -->
+        <section id="lesson-page-5" class="hidden text-center mb-8">
+            <h2 id="lesson-page-5-title" class="text-3xl font-bold text-gray-800 mb-4"></h2>
+            <div id="lesson-page-5-content" class="text-lg text-gray-600 leading-relaxed text-left"></div>
+            <div class="flex justify-between items-center mt-8">
+                <button id="back-button-5" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors">Back</button>
+                <div id="page-number-5" class="text-sm text-gray-400">Page 5 of 6</div>
+                <button id="continue-button-5" class="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                </button>
+            </div>
+        </section>
+        
+        <!-- Page 6: Let's Practice -->
+        <section id="lesson-page-6" class="hidden text-center mb-8">
+            <h2 id="lesson-page-6-title" class="text-3xl font-bold text-gray-800 mb-4"></h2>
+            <div id="lesson-page-6-content" class="text-lg text-gray-600 leading-relaxed text-left"></div>
+            <div class="flex justify-between items-center mt-8">
+                <button id="back-button-6" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors">Back</button>
+                <div id="page-number-6" class="text-sm text-gray-400">Page 6 of 6</div>
+                <button id="continue-button-6" class="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                </button>
+            </div>
+        </section>
+
+        <!-- Grid 1 -->
+        <section id="grid-page-1" class="hidden text-center mb-8">
+            <h2 id="grid-page-1-title" class="text-3xl font-bold text-gray-800 mb-4"></h2>
+            <p id="grid-page-1-text" class="text-lg text-gray-600 leading-relaxed"></p>
+            <p id="grid-feedback-message-1" class="mt-4 text-lg font-bold"></p>
+            <div id="verb-grid-1" class="mt-8 overflow-x-auto">
+                <!-- Verb grid will be generated here by JavaScript -->
+            </div>
+            <div class="flex justify-between items-center mt-8">
+                <button id="back-button-grid-1" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors">Back</button>
+                <div id="page-number-grid-1" class="text-sm text-gray-400"></div>
+                <button id="grid-action-button-1" class="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                </button>
+            </div>
+        </section>
+        
+        <!-- Quiz 1 -->
+        <section id="quiz-page-1" class="hidden text-center">
+            <h2 id="quiz-page-1-title" class="text-2xl font-semibold text-gray-800 mb-4"></h2>
+            <form id="conjugation-form-1" class="space-y-4">
+                <div class="flex items-center justify-center space-x-2">
+                    <label id="pronoun-label-1" for="user-conjugation-1" class="text-lg font-medium text-gray-700"></label>
+                    <input type="text" id="user-conjugation-1" name="user-conjugation-1" class="flex-1 max-w-xs px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-600 transition duration-300" required>
+                </div>
+                <button type="submit" id="check-button-1" class="w-full md:w-auto px-12 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                </button>
+            </form>
+            <div id="feedback-section-1" class="mt-8">
+                <p id="feedback-message-1" class="text-lg font-bold"></p>
+                <p id="correct-answer-text-1" class="text-sm text-gray-500 mt-2"></p>
+            </div>
+            <div class="flex justify-between items-center mt-8">
+                <button id="back-button-quiz-1" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors">Back</button>
+                <div id="page-number-quiz-1" class="text-sm text-gray-400"></div>
+            </div>
+        </section>
+
+        <!-- Grid 2 -->
+        <section id="grid-page-2" class="hidden text-center mb-8">
+            <h2 id="grid-page-2-title" class="text-3xl font-bold text-gray-800 mb-4"></h2>
+            <p id="grid-page-2-text" class="text-lg text-gray-600 leading-relaxed"></p>
+            <div id="verb-grid-2" class="mt-8 overflow-x-auto">
+                <!-- Verb grid will be generated here by JavaScript -->
+            </div>
+            <p id="grid-feedback-message-2" class="mt-4 text-lg font-bold"></p>
+            <div class="flex justify-between items-center mt-8">
+                <button id="back-button-grid-2" class="px-4 py-2 text-sm font-semibold text-gray-700 bg-gray-200 hover:bg-gray-300 rounded-full transition-colors">Back</button>
+                <div id="page-number-grid-2" class="text-sm text-gray-400"></div>
+                <button id="grid-action-button-2" class="px-8 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-full shadow-lg transition-transform transform hover:scale-105">
+                </button>
+            </div>
+        </section>
+
+        <!-- Completion Section -->
+        <section id="completion-section" class="hidden text-center">
+            <h2 id="completion-title" class="text-3xl md:text-4xl font-bold text-green-700 mb-4"></h2>
+            <p id="completion-text-1" class="text-lg text-gray-600"></p>
+            <p id="completion-text-2" class="text-sm text-gray-500 mt-4"></p>
+        </section>
+
+    </div>
+
+    <script>
+        // --- Translations ---
+        const translations = {
+            es: {
+                mainTitle: 'Aprende Verbos Mexicanos 🇲🇽',
+                subtitle: 'Primer Nivel: Palabras de acción que terminan en "-ar"',
+                langToggle: 'English',
+                welcomeText: '¡Bienvenido a "Verbos Mexicanos"! Aprender a conjugar verbos es una parte fundamental del español. En este primer nivel, te enfocarás en verbos que terminan en "-ar".',
+                continueButton: 'Continuar →',
+                startButton: '¡Empezar!',
+                checkButton: '¡Checar!',
+                backButton: 'Atrás',
+                feedbackCorrect: '¡Correcto! ¡Muy bien!',
+                feedbackIncorrect: 'Incorrecto.',
+                correctAnswer: (answer) => `La respuesta correcta es: "${answer}"`,
+                completionTitle: '¡Felicidades! 🎉',
+                completionText1: 'Has terminado todas las lecciones. ¡Toda la tabla está llena!',
+                completionText2: '¡Sigue practicando!',
+                gridCorrect: "¡Todo es correcto! ¡Pasemos al siguiente nivel!",
+                gridIncorrect: "¡No todo es correcto! Por favor, intenta de nuevo.",
+                gridAction: {
+                    display: 'Comenzar a practicar →',
+                    input: '¡Checar mis respuestas!',
+                    quiz: '¡Checar!'
+                },
+                gridPrompts: {
+                    display: 'Esta es una guía rápida. ¡El siguiente paso es practicar!',
+                    input: '¡Genial! Ahora, escribe la palabra para la persona "yo" en el cuadro para cada palabra.',
+                },
+                pronouns: {
+                    yo: 'Yo', tu: 'Tú', el: 'Él/Ella/Usted', nosotros: 'Nosotros', ustedes: 'Ustedes', ellos: 'Ellos'
+                },
+                // New Lesson Pages Content
+                lessonPages: [
+                    {
+                        title: 'Lección 1: Palabras de acción y cómo cambian',
+                        content: `
+                            <h2 class="text-2xl font-semibold mb-2">¿Qué son las palabras de acción?</h2>
+                            <p>En español, las palabras de acción nos dicen lo que alguien está haciendo. ¡Piensa en ellas como pequeñas tarjetas de instrucciones que describen actividades!</p>
+                            <p class="mt-4">Algunas palabras de acción típicas en español:</p>
+                            <ul class="list-disc ml-6 mt-2 space-y-1">
+                                <li>hablar (to talk)</li>
+                                <li>caminar (to walk)</li>
+                                <li>viajar (to travel)</li>
+                                <li>comprar (to buy)</li>
+                                <li>visitar (to visit)</li>
+                            </ul>
+                            <p class="mt-4">Fíjate cómo todas terminan en "-ar"? Esa es su "forma básica", como una etiqueta en blanco que puedes escribir.</p>
+                        `
+                    },
+                    {
+                        title: '¿Cómo usamos estas formas básicas?',
+                        content: `Las usamos para hablar de una acción que está sucediendo ahora. ¡Piensa en un verbo como una "caja de herramientas" de la acción!
+                            <p class="mt-4 font-bold">Aquí hay algunos ejemplos:</p>
+                            <ul class="list-disc ml-6 mt-2 space-y-2">
+                                <li><strong>caminar</strong> (to walk) → "Necesitamos <strong>caminar</strong> al hotel." (We need <strong>to walk</strong> to the hotel).</li>
+                                <li><strong>hablar</strong> (to talk) → "Quiero <strong>hablar</strong> con el gerente del hotel." (I want <strong>to talk</strong> to the hotel manager).</li>
+                                <li><strong>comprar</strong> (to buy) → "¿Dónde puedo <strong>comprar</strong> algunos recuerdos?" (Where can I <strong>buy</strong> some souvenirs?).</li>
+                                <li><strong>visitar</strong> (to visit) → "Vamos a <strong>visitar</strong> el museo mañana." (Let's <strong>visit</strong> the museum tomorrow).</li>
+                            </ul>
+                            <p class="mt-4">Note: Sometimes in English we don't say the word "to" but it's still there in meaning. When we say "Where can I buy..." we really mean "Where can I to buy..." and when we say "Let's visit..." we mean "Let's to visit..." Spanish always uses the basic -ar form in these situations!</p>`
+                    },
+                    {
+                        title: '¿Por qué cambian las palabras de acción?',
+                        content: `Aquí está la parte genial: estas palabras de acción son como un "cambia-formas". ¡Piensa en ellas como una camisa mágica que cambia de color dependiendo de quién la use! Suena loco, ¿verdad?
+                            <p class="mt-4">Observa el patrón, es como una receta secreta. Cada persona tiene su propia "terminación" para el verbo. ¡Es como si el verbo estuviera de fiesta y la terminación fuera el disfraz de cada persona!</p>`
+                    },
+                    {
+                        title: '¿Cómo hacemos esto?',
+                        content: `¡Es muy fácil! Simplemente quita el "-ar" del final de la palabra y agrega la terminación que le corresponde a cada persona.
+                            <div class="mt-4 flex flex-col items-center">
+                                <table class="table-auto border-collapse border border-gray-400">
+                                    <thead>
+                                        <tr>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">Palabra</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">Persona</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">Cambia a...</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border border-gray-400 px-4 py-2">habl-ar</td>
+                                            <td class="border border-gray-400 px-4 py-2">Yo</td>
+                                            <td class="border border-gray-400 px-4 py-2 font-bold">habl-o</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="mt-4">Las letras finales que cambias representan a las personas. "-o" al final es como decir "yo" al principio.</p>
+                            `
+                    },
+                    {
+                        title: 'The -o Ending',
+                        content: `The -o ending is just the first change we're learning. There are different endings for saying "you," "he/she," "we," "you all," and "they" as well.`
+                    },
+                    {
+                        title: 'Let\'s Practice!',
+                        content: `Here's a quick look at how hablar (to talk) changes:
+                            <div class="mt-4 overflow-x-auto">
+                                <table class="table-auto border-collapse border border-gray-400 w-full">
+                                    <thead>
+                                        <tr>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200"></th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">yo (I)</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">tú (you)</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">él/ella (he/she)</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">nosotros (we)</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">ustedes (you all)</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">ellos/ellas (they)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border border-gray-400 px-4 py-2 font-bold">hablar (to talk)</td>
+                                            <td class="border border-gray-400 px-4 py-2">hablo</td>
+                                            <td class="border border-gray-400 px-4 py-2">hablas</td>
+                                            <td class="border border-gray-400 px-4 py-2">habla</td>
+                                            <td class="border border-gray-400 px-4 py-2">hablamos</td>
+                                            <td class="border border-gray-400 px-4 py-2">hablan</td>
+                                            <td class="border border-gray-400 px-4 py-2">hablan</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h3 class="font-bold mt-4 mb-2">Let's use hablar (to talk) to see these forms in sentences:</h3>
+                            <ul class="list-disc ml-6 space-y-2">
+                                <li>Yo hablo (I talk)</li>
+                                <li>Tú hablas (You talk)</li>
+                                <li>Él/Ella habla (He/She talks)</li>
+                                <li>Nosotros hablamos (We talk)</li>
+                                <li>Ustedes hablan (You all talk)</li>
+                                <li>Ellos/Ellas hablan (They talk)</li>
+                            </ul>
+                            `
+                    }
+                ],
+                gridLessonTitle: (form) => `Time to practice the "${form}"!`,
+                gridLessonText: (form) => `Awesome! Now, type the word for the person "${form}" in the box for each action word.`,
+                practicePrompt: (infinitive, pronoun) => `Conjuga la palabra: ${infinitive} para la persona "${pronoun}"`,
+                pronounLabels: {
+                    yo: 'Yo', tu: 'Tú', el: 'Él/Ella/Usted', nosotros: 'Nosotros', ustedes: 'Ustedes', ellos: 'Ellos'
+                }
+            },
+            en: {
+                mainTitle: 'Learn Mexican Verbs 🇲🇽',
+                subtitle: 'Level 1: Action words that end in "-ar"',
+                langToggle: 'Español',
+                welcomeText: 'Welcome to "Mexican Verbs"! Learning verb conjugation is a fundamental part of Spanish. In this first level, you will focus on verbs that end in "-ar".',
+                continueButton: 'Continue →',
+                startButton: 'Start!',
+                checkButton: 'Check!',
+                backButton: 'Back',
+                feedbackCorrect: 'Correct! Very good!',
+                feedbackIncorrect: 'Incorrect.',
+                correctAnswer: (answer) => `The correct answer is: "${answer}"`,
+                completionTitle: 'Congratulations! 🎉',
+                completionText1: 'You have finished all the lessons. The entire table is complete!',
+                completionText2: 'Keep practicing!',
+                gridCorrect: "Everything is correct! Let's move to the next level!",
+                gridIncorrect: "Not everything is correct! Please try again.",
+                gridAction: {
+                    display: 'Start Practicing →',
+                    input: 'Check my answers!',
+                    quiz: 'Check!'
+                },
+                gridPrompts: {
+                    display: 'This is a quick guide. The next step is to practice!',
+                    input: 'Awesome! Now, type the word for "I" in the box for each action word.',
+                },
+                pronouns: {
+                    yo: 'I', tu: 'You', el: 'He/She/You(formal)', nosotros: 'We', ustedes: 'You (pl)', ellos: 'They'
+                },
+                // New Lesson Pages Content
+                lessonPages: [
+                    {
+                        title: 'Lesson 1: Action Words and How They Change',
+                        content: `
+                            <h2 class="text-2xl font-semibold mb-2">What are Action Words?</h2>
+                            <p>In Spanish, action words tell us what someone is doing. Think of them like little instruction cards that describe activities!</p>
+                            <p class="mt-4">Some typical Spanish action words:</p>
+                            <ul class="list-disc ml-6 mt-2 space-y-1">
+                                <li>hablar (to talk)</li>
+                                <li>caminar (to walk)</li>
+                                <li>viajar (to travel)</li>
+                                <li>comprar (to buy)</li>
+                                <li>visitar (to visit)</li>
+                            </ul>
+                            <p class="mt-4">Notice how they all end in "-ar"? That's like their "basic form" - kind of like giving a blank name tag before you write on it!</p>
+                        `
+                    },
+                    {
+                        title: 'How Do We Use These Basic Forms?',
+                        content: `We use them to talk about an action happening now. Think of a verb as an "action toolbox"!
+                            <p class="mt-4 font-bold">Here are some examples:</p>
+                            <ul class="list-disc ml-6 mt-2 space-y-2">
+                                <li><strong>caminar</strong> (to walk) → "We need <strong>to walk</strong> to the hotel."</li>
+                                <li><strong>hablar</strong> (to talk) → "I want <strong>to talk</strong> to the hotel manager."</li>
+                                <li><strong>comprar</strong> (to buy) → "Where can I <strong>buy</strong> some souvenirs?"</li>
+                                <li><strong>visitar</strong> (to visit) → "Let's <strong>visit</strong> the museum tomorrow."</li>
+                            </ul>
+                            <p class="mt-4">Note: Sometimes in English we don't say the word "to" but it's still there in meaning. When we say "Where can I buy..." we really mean "Where can I to buy..." and when we say "Let's visit..." we mean "Let's to visit..." Spanish always uses the basic -ar form in these situations!</p>`
+                    },
+                    {
+                        title: 'Why Do Action Words Change?',
+                        content: `Here is the cool part: these action words are like a "shape-shifters". Think of them like a magic shirt that changed color depending on who was wearing it!
+                            <p class="mt-4">Look for the pattern, it\'s like a secret recipe. Each person has their own "ending" for the verb. It's as if the verb is at a party and the ending is each person's costume!</p>`
+                    },
+                    {
+                        title: 'How Do We Do This?',
+                        content: `It\'s really simple! You just take off the "-ar" at the end of the word and add the ending that belongs to each person.
+                            <div class="mt-4 flex flex-col items-center">
+                                <table class="table-auto border-collapse border border-gray-400">
+                                    <thead>
+                                        <tr>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">Word</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">Person</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">Changes to...</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border border-gray-400 px-4 py-2">habl-ar</td>
+                                            <td class="border border-gray-400 px-4 py-2">I</td>
+                                            <td class="border border-gray-400 px-4 py-2 font-bold">habl-o</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="mt-4">The ending letters you change stand in for the people. "-o" at the end is like saying "I" at the beginning.</p>
+                            `
+                    },
+                    {
+                        title: 'The -o Ending',
+                        content: `The -o ending is just the first change we're learning. There are different endings for saying "you," "he/she," "we," "you all," and "they" as well.`
+                    },
+                    {
+                        title: 'Let\'s Practice!',
+                        content: `Here's a quick look at how hablar (to talk) changes:
+                            <div class="mt-4 overflow-x-auto">
+                                <table class="table-auto border-collapse border border-gray-400 w-full">
+                                    <thead>
+                                        <tr>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200"></th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">yo (I)</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">tú (you)</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">él/ella (he/she)</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">nosotros (we)</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">ustedes (you all)</th>
+                                            <th class="border border-gray-400 px-4 py-2 bg-gray-200">ellos/ellas (they)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="border border-gray-400 px-4 py-2 font-bold">hablar (to talk)</td>
+                                            <td class="border border-gray-400 px-4 py-2">hablo</td>
+                                            <td class="border border-gray-400 px-4 py-2">hablas</td>
+                                            <td class="border border-gray-400 px-4 py-2">habla</td>
+                                            <td class="border border-gray-400 px-4 py-2">hablamos</td>
+                                            <td class="border border-gray-400 px-4 py-2">hablan</td>
+                                            <td class="border border-gray-400 px-4 py-2">hablan</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <h3 class="font-bold mt-4 mb-2">Let's use hablar (to talk) to see these forms in sentences:</h3>
+                            <ul class="list-disc ml-6 space-y-2">
+                                <li>Yo hablo (I talk)</li>
+                                <li>Tú hablas (You talk)</li>
+                                <li>Él/Ella habla (He/She talks)</li>
+                                <li>Nosotros hablamos (We talk)</li>
+                                <li>Ustedes hablan (You all talk)</li>
+                                <li>Ellos/Ellas hablan (They talk)</li>
+                            </ul>
+                            `
+                    }
+                ],
+                gridLessonTitle: (form) => `Time to practice the "${form}"!`,
+                gridLessonText: (form) => `Awesome! Now, type the word for the person "${form}" in the box for each action word.`,
+                practicePrompt: (infinitive, pronoun) => `Conjuga la palabra: ${infinitive} para la persona "${pronoun}"`,
+                pronounLabels: {
+                    yo: 'Yo', tu: 'Tú', el: 'Él/Ella/Usted', nosotros: 'Nosotros', ustedes: 'Ustedes', ellos: 'Ellos'
+                }
+            }
+        };
+
+        // --- Data ---
+        const arVerbs = [
+            { infinitive: "caminar", translation: "to walk" },
+            { infinitive: "hablar", translation: "to speak" },
+            { infinitive: "tomar", translation: "to take/to drink" },
+            { infinitive: "comprar", translation: "to buy" },
+            { infinitive: "viajar", translation: "to travel" },
+            { infinitive: "bailar", translation: "to dance" },
+            { infinitive: "escuchar", translation: "to listen" },
+            { infinitive: "mirar", translation: "to look at/to watch" },
+            { infinitive: "trabajar", translation: "to work" },
+            { infinitive: "estudiar", translation: "to study" },
+        ];
+
+        const endings = {
+            yo: 'o',
+            tu: 'as',
+            el: 'a',
+            nosotros: 'amos',
+            ustedes: 'an',
+            ellos: 'an'
+        };
+
+        const pronouns = ['yo', 'tu', 'el', 'nosotros', 'ustedes', 'ellos'];
+        const englishPronouns = ['I', 'you', 'he/she', 'we', 'you (all)', 'they'];
+
+        // --- State Variables ---
+        let currentLessonIndex = 0; // 0 for welcome, 1-6 for lesson pages, 7 for Grid 1, 8 for Quiz 1, 9 for Grid 2
+        let currentQuizVerbIndex = 0;
+        let currentLanguage = 'es';
+        let gridMode = 'display'; // Can be 'display' or 'input'
+
+        // --- DOM Elements ---
+        const welcomeSection = document.getElementById('welcome-section');
+        const lessonPages = [
+            document.getElementById('lesson-page-1'),
+            document.getElementById('lesson-page-2'),
+            document.getElementById('lesson-page-3'),
+            document.getElementById('lesson-page-4'),
+            document.getElementById('lesson-page-5'),
+            document.getElementById('lesson-page-6'),
+        ];
+        const gridSection1 = document.getElementById('grid-page-1');
+        const quizSection1 = document.getElementById('quiz-page-1');
+        const gridSection2 = document.getElementById('grid-page-2');
+        const completionSection = document.getElementById('completion-section');
+        const langToggleButton = document.getElementById('lang-toggle');
+        const startButton = document.getElementById('start-button');
+        const conjugationForm = document.getElementById('conjugation-form-1');
+        const userInputField = document.getElementById('user-conjugation-1');
+        const feedbackMessage = document.getElementById('feedback-message-1');
+        const correctAnswerText = document.getElementById('correct-answer-text-1');
+        const pronounLabel = document.getElementById('pronoun-label-1');
+        
+        const gridActionButton1 = document.getElementById('grid-action-button-1');
+        const gridActionButton2 = document.getElementById('grid-action-button-2');
+        const verbGrid1 = document.getElementById('verb-grid-1');
+        const verbGrid2 = document.getElementById('verb-grid-2');
+        const gridFeedbackMessage1 = document.getElementById('grid-feedback-message-1');
+        const gridFeedbackMessage2 = document.getElementById('grid-feedback-message-2');
+
+        const backButtons = {
+            '1': document.getElementById('back-button-1'),
+            '2': document.getElementById('back-button-2'),
+            '3': document.getElementById('back-button-3'),
+            '4': document.getElementById('back-button-4'),
+            '5': document.getElementById('back-button-5'),
+            '6': document.getElementById('back-button-6'),
+            'grid-1': document.getElementById('back-button-grid-1'),
+            'quiz-1': document.getElementById('back-button-quiz-1'),
+            'grid-2': document.getElementById('back-button-grid-2'),
+        };
+
+        const continueButtons = {
+            '1': document.getElementById('continue-button-1'),
+            '2': document.getElementById('continue-button-2'),
+            '3': document.getElementById('continue-button-3'),
+            '4': document.getElementById('continue-button-4'),
+            '5': document.getElementById('continue-button-5'),
+            '6': document.getElementById('continue-button-6')
+        };
+        const checkButton1 = document.getElementById('check-button-1');
+
+        // --- Functions ---
+        function getEnglishTranslation(verbIndex, pronounIndex) {
+            const verb = arVerbs[verbIndex];
+            const base = verb.translation.replace('to ', '');
+            let conjugated = '';
+
+            if (pronounIndex === 2) { 
+                if (base.endsWith('sh') || base.endsWith('ch')) {
+                    conjugated = base + 'es';
+                } else if (base.endsWith('y')) {
+                    conjugated = base.slice(0, -1) + 'ies';
+                } else {
+                    conjugated = base + 's';
+                }
+            } else {
+                conjugated = base;
+            }
+            return englishPronouns[pronounIndex] + " " + conjugated;
+        }
+
+        function updateUI() {
+            const lang = translations[currentLanguage];
+            if (document.getElementById('main-title-welcome')) {
+                document.getElementById('main-title-welcome').textContent = lang.mainTitle;
+            }
+            if (document.getElementById('subtitle-welcome')) {
+                document.getElementById('subtitle-welcome').textContent = lang.subtitle;
+            }
+            if (langToggleButton) {
+                langToggleButton.textContent = translations[currentLanguage === 'es' ? 'en' : 'es'].langToggle;
+            }
+            if (document.getElementById('welcome-text')) {
+                document.getElementById('welcome-text').textContent = lang.welcomeText;
+            }
+            if (startButton) {
+                startButton.textContent = lang.startButton;
+            }
+
+            // Update action button text
+            if (gridActionButton1) {
+                gridActionButton1.textContent = lang.continueButton;
+            }
+            if (gridActionButton2) {
+                gridActionButton2.textContent = lang.checkButton;
+            }
+            if (checkButton1) {
+                 checkButton1.textContent = lang.checkButton;
+            }
+
+            // Update back button text
+            Object.values(backButtons).forEach(button => {
+                if (button) {
+                    button.textContent = lang.backButton;
+                }
+            });
+
+            // Update continue button text
+            Object.values(continueButtons).forEach(button => {
+                if (button) {
+                    button.textContent = lang.continueButton;
+                }
+            });
+
+            // Update content for all lesson pages
+            lessonPages.forEach((page, index) => {
+                const pageContent = lang.lessonPages[index];
+                if (pageContent) {
+                    const titleElement = page.querySelector('h2');
+                    if (titleElement) {
+                        titleElement.textContent = pageContent.title;
+                    }
+                    const contentElement = page.querySelector('div');
+                    if (contentElement) {
+                        contentElement.innerHTML = pageContent.content;
+                    }
+                }
+            });
+
+            // Update grid and quiz page text
+            if (document.getElementById('grid-page-1-title')) {
+                document.getElementById('grid-page-1-title').textContent = "Grid 1: ¡Hora de practicar!";
+                document.getElementById('grid-page-1-text').textContent = "La primera fila, 'caminar', está completada como ejemplo. Complete el resto de la cuadrícula a continuación para practicar sus conjugaciones!";
+            }
+            if (document.getElementById('quiz-page-1-title')) {
+                document.getElementById('quiz-page-1-title').textContent = "Quiz 1";
+            }
+            if (document.getElementById('grid-page-2-title')) {
+                document.getElementById('grid-page-2-title').textContent = "Grid 2: Prueba Final";
+                document.getElementById('grid-page-2-text').textContent = "¡Felicitaciones! Ahora, complete la primera columna a continuación como prueba final de las terminaciones '-o'.";
+            }
+            
+            // Update completion page text
+            if (document.getElementById('completion-title')) {
+                document.getElementById('completion-title').textContent = lang.completionTitle;
+            }
+            if (document.getElementById('completion-text-1')) {
+                document.getElementById('completion-text-1').textContent = lang.completionText1;
+            }
+            if (document.getElementById('completion-text-2')) {
+                document.getElementById('completion-text-2').textContent = lang.completionText2;
+            }
+
+             // Update page numbers for different sections
+            const pageNumbers = {
+                'welcome': '',
+                1: 'Page 1 of 6',
+                2: 'Page 2 of 6',
+                3: 'Page 3 of 6',
+                4: 'Page 4 of 6',
+                5: 'Page 5 of 6',
+                6: 'Page 6 of 6',
+                'grid-1': 'Grid 1',
+                'quiz-1': 'Quiz 1',
+                'grid-2': 'Grid 2'
+            };
+
+            const currentPageNumberElement = document.getElementById(`page-number-${currentLessonIndex}`);
+            if (currentPageNumberElement) {
+                const pageText = pageNumbers[currentLessonIndex] || '';
+                currentPageNumberElement.textContent = pageText;
+            }
+        }
+
+        function createGrid(targetElement, filled = 'none', showHeader = true) {
+            if (!targetElement) return;
+            targetElement.innerHTML = '';
+            
+            const gridContainer = document.createElement('div');
+            gridContainer.className = 'grid gap-2 text-sm md:text-base grid-cols-2 md:grid-cols-7';
+            
+            if (showHeader) {
+                const lang = translations[currentLanguage];
+                const headerCell = (text) => `<div class="font-bold text-center p-2">${text}</div>`;
+                gridContainer.innerHTML += headerCell('Palabra');
+                gridContainer.innerHTML += pronouns.map((p, pIdx) => headerCell(`${lang.pronouns[p]} (${englishPronouns[pIdx]})`)).join('');
+            }
+            
+            arVerbs.forEach((verb, verbIdx) => {
+                gridContainer.innerHTML += `<div class="p-2 text-left font-semibold">${verb.infinitive}</div>`;
+                
+                pronouns.forEach((pronoun, pIdx) => {
+                    const stem = verb.infinitive.slice(0, -2);
+                    const ending = endings[pronoun];
+                    const conjugatedVerb = stem + ending;
+                    let cellContent = '';
+                    let cellClasses = 'flex items-center justify-center p-2';
+                    
+                    if (filled === 'first-row-filled') {
+                         if (verbIdx === 0) {
+                            cellContent = `<span>${conjugatedVerb}</span>`;
+                            cellClasses += ' bg-gray-100 text-gray-700';
+                        } else {
+                            cellContent = `<span></span>`;
+                            cellClasses += ' bg-gray-100 text-gray-700';
+                        }
+                    } else if (filled === 'yo-input') { // Grid 2
+                        if (pIdx === 0) {
+                            const inputId = `input-${verbIdx}-${pIdx}`;
+                            const placeholder = translations[currentLanguage].pronouns.yo + '...';
+                            cellContent = `<input type="text" id="${inputId}" placeholder="${placeholder}" class="w-full text-center border-2 border-gray-300 rounded-md p-1">`;
+                            cellClasses += ' active-column';
+                        } else {
+                            cellContent = `<span>${conjugatedVerb}</span>`;
+                            cellClasses += ' bg-gray-100 text-gray-700';
+                        }
+                    } else {
+                        cellContent = `<span>${conjugatedVerb}</span>`;
+                        cellClasses += ' bg-gray-100 text-gray-700';
+                    }
+                    
+                    gridContainer.innerHTML += `<div class="${cellClasses}">${cellContent}</div>`;
+                });
+                
+                gridContainer.innerHTML += `<div class="p-2 text-left font-semibold text-gray-500">${verb.translation}</div>`;
+                pronouns.forEach((_, pIdx) => {
+                    gridContainer.innerHTML += `<div class="p-2 text-center text-gray-500"><span>${getEnglishTranslation(verbIdx, pIdx)}</span></div>`;
+                });
+            });
+            
+            targetElement.appendChild(gridContainer);
+        }
+
+
+        // --- Navigation Functions ---
+        function hideAllSections() {
+            [welcomeSection, gridSection1, quizSection1, gridSection2, completionSection, ...lessonPages].forEach(section => {
+                if (section) {
+                    section.classList.add('hidden');
+                }
+            });
+        }
+
+        function renderPage(pageId) {
+            hideAllSections();
+            let pageElement;
+            let pageNumberId = '';
+
+            switch(pageId) {
+                case 'welcome':
+                    pageElement = welcomeSection;
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    currentLessonIndex = pageId;
+                    pageElement = lessonPages[pageId - 1];
+                    pageNumberId = `page-number-${pageId}`;
+                    break;
+                case 'grid-1':
+                    currentLessonIndex = 'grid-1';
+                    pageElement = gridSection1;
+                    pageNumberId = 'page-number-grid-1';
+                    createGrid(verbGrid1, 'first-row-filled');
+                    break;
+                case 'quiz-1':
+                    currentLessonIndex = 'quiz-1';
+                    pageElement = quizSection1;
+                    pageNumberId = 'page-number-quiz-1';
+                    currentQuizVerbIndex = 0;
+                    nextSingleVerbQuiz();
+                    break;
+                case 'grid-2':
+                    currentLessonIndex = 'grid-2';
+                    pageElement = gridSection2;
+                    pageNumberId = 'page-number-grid-2';
+                    createGrid(verbGrid2, 'yo-input');
+                    break;
+                case 'completion':
+                    pageElement = completionSection;
+                    break;
+            }
+            if (pageElement) {
+                pageElement.classList.remove('hidden');
+            }
+            updateUI();
+        }
+
+        function nextSingleVerbQuiz() {
+            if (currentQuizVerbIndex >= arVerbs.length) {
+                renderPage('grid-2');
+                return;
+            }
+            
+            const currentPronoun = pronouns[0]; // Only for 'yo'
+            const lang = translations[currentLanguage];
+            const currentVerb = arVerbs[currentQuizVerbIndex];
+            
+            const practicePrompt = document.getElementById('quiz-page-1-title');
+            if (practicePrompt) {
+                practicePrompt.textContent = lang.practicePrompt(currentVerb.infinitive, lang.pronouns[currentPronoun]) + ` (${currentVerb.translation})`;
+            }
+            
+            if (userInputField) {
+                userInputField.value = '';
+            }
+            if (feedbackMessage) {
+                feedbackMessage.textContent = '';
+            }
+            if (correctAnswerText) {
+                correctAnswerText.textContent = '';
+            }
+            if (pronounLabel) {
+                pronounLabel.textContent = lang.pronouns[currentPronoun] + ":";
+            }
+            if (userInputField) {
+                userInputField.focus();
+            }
+        }
+
+        function handleSingleVerbFormSubmit(event) {
+            event.preventDefault();
+            const userInput = userInputField.value.trim().toLowerCase();
+            const currentVerb = arVerbs[currentQuizVerbIndex];
+            const currentPronoun = pronouns[0]; // Only for 'yo'
+            const stem = currentVerb.infinitive.slice(0, -2);
+            const ending = endings[currentPronoun];
+            const correctAnswer = stem + ending;
+            const lang = translations[currentLanguage];
+
+            if (userInput === correctAnswer) {
+                if (feedbackMessage) {
+                    feedbackMessage.textContent = lang.feedbackCorrect;
+                    feedbackMessage.classList.remove('text-red-600');
+                    feedbackMessage.classList.add('text-green-600');
+                }
+                if (userInputField) {
+                    userInputField.classList.remove('incorrect-answer');
+                    userInputField.classList.add('correct-answer');
+                }
+                currentQuizVerbIndex++;
+                setTimeout(nextSingleVerbQuiz, 2000);
+            } else {
+                if (feedbackMessage) {
+                    feedbackMessage.textContent = lang.feedbackIncorrect;
+                    feedbackMessage.classList.remove('text-green-600');
+                    feedbackMessage.classList.add('text-red-600');
+                }
+                if (correctAnswerText) {
+                    correctAnswerText.textContent = lang.correctAnswer(correctAnswer);
+                }
+                if (userInputField) {
+                    userInputField.classList.remove('correct-answer');
+                    userInputField.classList.add('incorrect-answer');
+                }
+            }
+        }
+
+        function handleGridFormSubmit(event) {
+            const buttonId = event.target.id;
+            const lang = translations[currentLanguage];
+
+            if (buttonId === 'grid-action-button-1') { // First grid continues to the quiz
+                renderPage('quiz-1');
+            } else if (buttonId === 'grid-action-button-2') { // Second grid checks answers
+                let allCorrect = true;
+                const currentPronounIndex = 0; // Only for 'yo'
+
+                arVerbs.forEach((verb, verbIdx) => {
+                    const inputId = `input-${verbIdx}-${currentPronounIndex}`;
+                    const inputElement = document.getElementById(inputId);
+                    if (!inputElement) return;
+
+                    const userInput = inputElement.value.trim().toLowerCase();
+                    const stem = verb.infinitive.slice(0, -2);
+                    const ending = endings[pronouns[currentPronounIndex]];
+                    const correctAnswer = stem + ending;
+
+                    inputElement.classList.remove('correct-answer', 'incorrect-answer');
+                    if (userInput === correctAnswer) {
+                        inputElement.classList.add('correct-answer');
+                    } else {
+                        inputElement.classList.add('incorrect-answer');
+                        allCorrect = false;
+                    }
+                });
+
+                if (gridFeedbackMessage2) {
+                    if (allCorrect) {
+                        gridFeedbackMessage2.textContent = lang.gridCorrect;
+                        gridFeedbackMessage2.classList.remove('text-red-600');
+                        gridFeedbackMessage2.classList.add('text-green-600');
+                        setTimeout(() => renderPage('completion'), 1500);
+                    } else {
+                        gridFeedbackMessage2.textContent = lang.gridIncorrect;
+                        gridFeedbackMessage2.classList.remove('text-green-600');
+                        gridFeedbackMessage2.classList.add('text-red-600');
+                    }
+                }
+            }
+        }
+
+        // --- Event Listeners ---
+        if (startButton) {
+            startButton.addEventListener('click', () => renderPage(1));
+        }
+
+        Object.values(continueButtons).forEach((button, index) => {
+            if (button) {
+                button.addEventListener('click', () => {
+                    const nextPage = index + 2;
+                    if (nextPage > lessonPages.length) {
+                        renderPage('grid-1');
+                    } else {
+                        renderPage(nextPage);
+                    }
+                });
+            }
+        });
+
+        if (backButtons['grid-1']) {
+            backButtons['grid-1'].addEventListener('click', () => renderPage(lessonPages.length));
+        }
+
+        if (backButtons['quiz-1']) {
+            backButtons['quiz-1'].addEventListener('click', () => renderPage('grid-1'));
+        }
+
+        if (backButtons['grid-2']) {
+            backButtons['grid-2'].addEventListener('click', () => renderPage('quiz-1'));
+        }
+        
+        if (gridActionButton1) {
+            gridActionButton1.addEventListener('click', handleGridFormSubmit);
+        }
+        
+        if (gridActionButton2) {
+            gridActionButton2.addEventListener('click', handleGridFormSubmit);
+        }
+
+        if (conjugationForm) {
+            conjugationForm.addEventListener('submit', handleSingleVerbFormSubmit);
+        }
+
+        if (langToggleButton) {
+            langToggleButton.addEventListener('click', () => {
+                currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
+                updateUI();
+                if (currentLessonIndex === 'grid-1') {
+                    createGrid(verbGrid1, 'first-row-filled');
+                } else if (currentLessonIndex === 'grid-2') {
+                    createGrid(verbGrid2, 'yo-input');
+                }
+            });
+        }
+
+        // Initial UI setup on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPage('welcome');
+        });
+    </script>
+</body>
+</html>
